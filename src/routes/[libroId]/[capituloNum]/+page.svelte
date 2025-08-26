@@ -1,17 +1,12 @@
 <script>
-  // Versión final con bug de navegación corregido
   export let data;
 
-  // Declaraciones Reactivas.
-  // El '$:' le dice a Svelte que vuelva a ejecutar estas líneas
-  // cada vez que una de las variables de las que dependen (como 'data') cambie.
   $: ({ nombreLibro, idLibro, capitulo, totalCapitulos, numeroCapituloActual } = data);
   $: capituloAnterior = numeroCapituloActual - 1;
   $: capituloSiguiente = numeroCapituloActual + 1;
   $: mostrarAnterior = numeroCapituloActual > 1;
   $: mostrarSiguiente = numeroCapituloActual < totalCapitulos;
 
-  // Esta lógica no necesita ser reactiva, ya que solo maneja el estado de la selección
   let versiculosSeleccionados = new Set();
   function seleccionarVersiculo(numeroVersiculo) {
     if (versiculosSeleccionados.has(numeroVersiculo)) {
@@ -22,43 +17,39 @@
     versiculosSeleccionados = versiculosSeleccionados;
   }
   
-  // Una lógica extra: cuando cambiamos de capítulo, limpiamos los versículos seleccionados.
   $: if (capitulo) {
     versiculosSeleccionados = new Set();
   }
 </script>
 
 <main class="contenedor-principal">
-<header class="encabezado-lectura">
-  <a href="/{idLibro}" class="boton-volver">&larr; {nombreLibro}</a>
-  
-  <!-- NUEVO CONTENEDOR PARA LA NAVEGACIÓN SUPERIOR -->
-  <div class="navegacion-superior">
+
+  <header class="encabezado-lectura">
+    <div class="fila-superior">
+      <a href="/{idLibro}" class="boton-volver">&larr; {nombreLibro}</a>
+    </div>
     
-    <!-- Botón Anterior (Copiado de la navegación de abajo) -->
-    {#if mostrarAnterior}
-      <a href="/{idLibro}/{capituloAnterior}" class="boton-nav-superior" title="Capítulo Anterior">
-        &larr;
-      </a>
-    {:else}
-      <!-- Un espaciador para mantener el título centrado -->
-      <span class="espaciador-nav-superior"></span>
-    {/if}
+    <div class="navegacion-superior">
+      
+      {#if mostrarAnterior}
+        <a href="/{idLibro}/{capituloAnterior}" class="boton-nav-superior" title="Capítulo Anterior">
+          &larr;
+        </a>
+      {:else}
+        <span class="espaciador-nav-superior"></span>
+      {/if}
 
-    <h1>{nombreLibro} {capitulo.chapter_number}</h1>
+      <h1>{nombreLibro} {capitulo.chapter_number}</h1>
 
-    <!-- Botón Siguiente (Copiado de la navegación de abajo) -->
-    {#if mostrarSiguiente}
-      <a href="/{idLibro}/{capituloSiguiente}" class="boton-nav-superior" title="Capítulo Siguiente">
-        &rarr;
-      </a>
-    {:else}
-      <!-- Un espaciador para mantener el título centrado -->
-      <span class="espaciador-nav-superior"></span>
-    {/if}
-
-  </div>
-</header>
+      {#if mostrarSiguiente}
+        <a href="/{idLibro}/{capituloSiguiente}" class="boton-nav-superior" title="Capítulo Siguiente">
+          &rarr;
+        </a>
+      {:else}
+        <span class="espaciador-nav-superior"></span>
+      {/if}
+    </div>
+  </header>
   
   <article class="texto-escritura">
     {#each capitulo.verses as textoVersiculo, index}
@@ -107,24 +98,19 @@
   }
 
   .encabezado-lectura {
-    padding: 1.5em;
+    padding: 1em 1.5em;
     margin-bottom: 2em;
     background-color: var(--color-fondo-suave);
     border-radius: 8px;
-    text-align: center;
-    position: relative;
   }
 
-  .encabezado-lectura h1 {
-    margin: 0;
-    font-size: 1.8rem;
-    color: var(--color-texto);
+  .fila-superior {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 1.5em;
   }
 
   .boton-volver {
-    position: absolute;
-    top: 1em;
-    left: 1em;
     text-decoration: none;
     color: var(--color-texto);
     background-color: #fff;
@@ -133,36 +119,37 @@
     border: 1px solid var(--color-borde-suave);
     font-size: 0.9em;
   }
-  /* --- NUEVOS ESTILOS PARA LA NAVEGACIÓN SUPERIOR --- */
+
   .navegacion-superior {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin-top: 1em; /* Un poco de espacio sobre el título */
   }
 
+  /* Eliminamos la regla .titulo-container que estaba causando la advertencia */
   .navegacion-superior h1 {
-    margin: 0 1em; /* Evita que el título se pegue a los botones */
-    flex-grow: 1; /* Permite que el título ocupe el espacio sobrante */
+    margin: 0;
+    font-size: 1.8rem;
+    color: var(--color-texto);
+    text-align: center;
+    flex-grow: 1; /* Permitimos que ocupe el espacio central */
   }
 
   .boton-nav-superior {
     text-decoration: none;
     color: var(--color-primario);
     border: 1px solid var(--color-borde-suave);
-    border-radius: 50%; /* Para hacerlos redondos */
-    width: 44px;  /* Ancho fijo */
-    height: 44px; /* Alto fijo */
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
     font-size: 1.5rem;
     font-weight: bold;
     transition: background-color 0.2s, color 0.2s;
-    
-    /* Usamos flexbox para centrar la flecha dentro del círculo */
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-shrink: 0; /* Evita que el botón se encoja */
+    flex-shrink: 0;
   }
 
   .boton-nav-superior:hover {
@@ -171,11 +158,11 @@
   }
 
   .espaciador-nav-superior {
-    /* Debe ocupar el mismo espacio que el botón para mantener el balance */
     width: 44px;
     height: 44px;
     flex-shrink: 0;
   }
+
   .versiculo-container {
     margin-bottom: 1em;
     font-size: 1.2rem;
