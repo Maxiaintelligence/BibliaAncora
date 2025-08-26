@@ -52,7 +52,6 @@
         &larr; Capítulo Anterior
       </a>
     {:else}
-      <!-- CORREGIDO: Etiqueta span con apertura y cierre -->
       <span></span>
     {/if}
 
@@ -100,7 +99,6 @@
     font-size: 0.9em;
   }
 
-  /* CORREGIDO: La regla ahora apunta a '.versiculo-container' en lugar de 'p' */
   .versiculo-container {
     margin-bottom: 1em;
     font-size: 1.2rem;
@@ -109,15 +107,13 @@
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.2s;
-    outline: none; /* Quita el borde azul por defecto al hacer clic */
+    outline: none;
   }
 
-  /* NUEVO: Añadimos un estilo de foco para la navegación con teclado */
   .versiculo-container:focus-visible {
-    box-shadow: 0 0 0 2px var(--color-primario); /* Un aro de color primario al enfocar con Tab */
+    box-shadow: 0 0 0 2px var(--color-primario);
   }
   
-  /* CORREGIDO: La regla ahora apunta a '.versiculo-container.seleccionado' */
   .versiculo-container.seleccionado {
     background-color: var(--color-primario);
     color: var(--color-primario-texto);
@@ -131,7 +127,6 @@
     vertical-align: super; 
   }
 
-  /* CORREGIDO: La regla ahora apunta a '.versiculo-container.seleccionado' */
   .versiculo-container.seleccionado .numero-versiculo {
     color: var(--color-primario-texto);
     opacity: 0.8;
