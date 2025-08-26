@@ -85,6 +85,9 @@
     cursor: pointer;
     font-size: 1.1rem;
     transition: background-color 0.2s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .capitulo-boton:hover {
