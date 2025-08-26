@@ -1,4 +1,5 @@
 <script>
+  // Versión final con bug de navegación corregido
   export let data;
 
   // Declaraciones Reactivas.
