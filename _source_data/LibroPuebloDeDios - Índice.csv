@@ -1,0 +1,74 @@
+Libro,Abreviatura,Testamento,Orden,Capítulos,Clasifcación
+Génesis,Gn,Antiguo,1,50,Pentateuco
+Éxodo,Ex,Antiguo,2,40,Pentateuco
+Levítico,Lv,Antiguo,3,27,Pentateuco
+Números,Nm,Antiguo,4,36,Pentateuco
+Deuteronomio,Dt,Antiguo,5,34,Pentateuco
+Josué,Jos,Antiguo,6,24,Históricos
+Jueces,Jue,Antiguo,7,21,Históricos
+Rut,Rut,Antiguo,8,4,Históricos
+1 Samuel,1 Sm,Antiguo,9,31,Históricos
+2 Samuel,2 Sm,Antiguo,10,24,Históricos
+1 Reyes,1 Re,Antiguo,11,22,Históricos
+2 Reyes,2 Re,Antiguo,12,25,Históricos
+1 Crónicas,1 Cr,Antiguo,13,29,Históricos
+2 Crónicas,2 Cr,Antiguo,14,36,Históricos
+Esdras,Esd,Antiguo,15,10,Históricos
+Nehemías,Neh,Antiguo,16,13,Históricos
+Tobías,Tob,Antiguo,17,14,Históricos
+Judit,Jdt,Antiguo,18,16,Históricos
+Ester,Est,Antiguo,19,16,Históricos
+1 Macabeos,1 Mac,Antiguo,20,16,Históricos
+2 Macabeos,2 Mac,Antiguo,21,15,Históricos
+Job,Job,Antiguo,22,42,Sapienciales y Poéticos
+Salmos,Sal,Antiguo,23,150,Sapienciales y Poéticos
+Proverbios,Prov,Antiguo,24,31,Sapienciales y Poéticos
+Eclesiastés (Qohelet),Ecl,Antiguo,25,12,Sapienciales y Poéticos
+Cantar de los Cantares,Cant,Antiguo,26,8,Sapienciales y Poéticos
+Sabiduría,Sab,Antiguo,27,19,Sapienciales y Poéticos
+Eclesiástico (Sirácida),Eclo,Antiguo,28,51,Sapienciales y Poéticos
+Isaías,Is,Antiguo,29,66,Profetas Mayores
+Jeremías,Jr,Antiguo,30,52,Profetas Mayores
+Lamentaciones,Lam,Antiguo,31,5,Profetas Mayores
+Baruc,Bar,Antiguo,32,6,Profetas Mayores
+Ezequiel,Ez,Antiguo,33,48,Profetas Mayores
+Daniel,Dn,Antiguo,34,14,Profetas Mayores
+Oseas,Os,Antiguo,35,14,Profetas Menores
+Joel,Jl,Antiguo,36,3,Profetas Menores
+Amós,Am,Antiguo,37,9,Profetas Menores
+Abdías,Abd,Antiguo,38,1,Profetas Menores
+Jonás,Jon,Antiguo,39,4,Profetas Menores
+Miqueas,Miq,Antiguo,40,7,Profetas Menores
+Nahúm,Nah,Antiguo,41,3,Profetas Menores
+Habacuc,Hab,Antiguo,42,3,Profetas Menores
+Sofonías,Sof,Antiguo,43,3,Profetas Menores
+Ageo,Ag,Antiguo,44,2,Profetas Menores
+Zacarías,Zac,Antiguo,45,14,Profetas Menores
+Malaquías,Mal,Antiguo,46,4,Profetas Menores
+Mateo,Mt,Nuevo,47,28,Evangelio
+Marcos,Mc,Nuevo,48,16,Evangelio
+Lucas,Lc,Nuevo,49,24,Evangelio
+Juan,Jn,Nuevo,50,21,Evangelio
+Hechos,Hch,Nuevo,51,28,Hechos de los Apóstoles
+Romanos,Rom,Nuevo,52,16,Cartas de San Pablo
+1 Corintios,1 Cor,Nuevo,53,16,Cartas de San Pablo
+2 Corintios,2 Cor,Nuevo,54,13,Cartas de San Pablo
+Gálatas,Gal,Nuevo,55,6,Cartas de San Pablo
+Efesios,Ef,Nuevo,56,6,Cartas de San Pablo
+Filipenses,Flp,Nuevo,57,4,Cartas de San Pablo
+Colosenses,Col,Nuevo,58,4,Cartas de San Pablo
+1 Tesalonicenses,1 Tes,Nuevo,59,5,Cartas de San Pablo
+2 Tesalonicenses,2 Tes,Nuevo,60,3,Cartas de San Pablo
+1 Timoteo,1 Tim,Nuevo,61,6,Cartas de San Pablo
+2 Timoteo,2 Tim,Nuevo,62,4,Cartas de San Pablo
+Tito,Tit,Nuevo,63,3,Cartas de San Pablo
+Filemón,Flm,Nuevo,64,1,Cartas de San Pablo
+Hebreos,Heb,Nuevo,65,13,Cartas de San Pablo
+Santiago,Sant,Nuevo,66,5,Cartas Católicas
+1 Pedro,1 Pe,Nuevo,67,5,Cartas Católicas
+2 Pedro,2 Pe,Nuevo,68,3,Cartas Católicas
+1 Juan,1 Jn,Nuevo,69,5,Cartas Católicas
+2 Juan,2 Jn,Nuevo,70,1,Cartas Católicas
+3 Juan,3 Jn,Nuevo,71,1,Cartas Católicas
+Judas,Jds,Nuevo,72,1,Cartas Católicas
+Apocalipsis,Ap,Nuevo,73,22,Apocalipsis
