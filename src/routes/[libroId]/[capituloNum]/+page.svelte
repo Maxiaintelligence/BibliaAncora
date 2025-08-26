@@ -29,10 +29,36 @@
 </script>
 
 <main class="contenedor-principal">
-  <header class="encabezado-lectura">
-    <a href="/{idLibro}" class="boton-volver">&larr; {nombreLibro}</a>
+<header class="encabezado-lectura">
+  <a href="/{idLibro}" class="boton-volver">&larr; {nombreLibro}</a>
+  
+  <!-- NUEVO CONTENEDOR PARA LA NAVEGACIÓN SUPERIOR -->
+  <div class="navegacion-superior">
+    
+    <!-- Botón Anterior (Copiado de la navegación de abajo) -->
+    {#if mostrarAnterior}
+      <a href="/{idLibro}/{capituloAnterior}" class="boton-nav-superior" title="Capítulo Anterior">
+        &larr;
+      </a>
+    {:else}
+      <!-- Un espaciador para mantener el título centrado -->
+      <span class="espaciador-nav-superior"></span>
+    {/if}
+
     <h1>{nombreLibro} {capitulo.chapter_number}</h1>
-  </header>
+
+    <!-- Botón Siguiente (Copiado de la navegación de abajo) -->
+    {#if mostrarSiguiente}
+      <a href="/{idLibro}/{capituloSiguiente}" class="boton-nav-superior" title="Capítulo Siguiente">
+        &rarr;
+      </a>
+    {:else}
+      <!-- Un espaciador para mantener el título centrado -->
+      <span class="espaciador-nav-superior"></span>
+    {/if}
+
+  </div>
+</header>
   
   <article class="texto-escritura">
     {#each capitulo.verses as textoVersiculo, index}
@@ -107,7 +133,49 @@
     border: 1px solid var(--color-borde-suave);
     font-size: 0.9em;
   }
+  /* --- NUEVOS ESTILOS PARA LA NAVEGACIÓN SUPERIOR --- */
+  .navegacion-superior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 1em; /* Un poco de espacio sobre el título */
+  }
 
+  .navegacion-superior h1 {
+    margin: 0 1em; /* Evita que el título se pegue a los botones */
+    flex-grow: 1; /* Permite que el título ocupe el espacio sobrante */
+  }
+
+  .boton-nav-superior {
+    text-decoration: none;
+    color: var(--color-primario);
+    border: 1px solid var(--color-borde-suave);
+    border-radius: 50%; /* Para hacerlos redondos */
+    width: 44px;  /* Ancho fijo */
+    height: 44px; /* Alto fijo */
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition: background-color 0.2s, color 0.2s;
+    
+    /* Usamos flexbox para centrar la flecha dentro del círculo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0; /* Evita que el botón se encoja */
+  }
+
+  .boton-nav-superior:hover {
+    background-color: var(--color-primario);
+    color: var(--color-primario-texto);
+  }
+
+  .espaciador-nav-superior {
+    /* Debe ocupar el mismo espacio que el botón para mantener el balance */
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+  }
   .versiculo-container {
     margin-bottom: 1em;
     font-size: 1.2rem;
