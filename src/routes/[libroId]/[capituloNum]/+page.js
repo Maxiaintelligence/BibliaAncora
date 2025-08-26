@@ -30,5 +30,7 @@ export async function load({ fetch, params }) {
     nombreLibro: datosDelLibro.book_full_name,
     idLibro: libroId,
     capitulo: datosDelCapitulo,
+    totalCapitulos: totalCapitulos, // <-- NUEVO: Pasamos el total de capítulos
+    numeroCapituloActual: capituloNum, // <-- NUEVO: Pasamos el número actual
   };
 }

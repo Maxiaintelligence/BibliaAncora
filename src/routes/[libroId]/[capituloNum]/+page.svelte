@@ -1,19 +1,20 @@
 <script>
   export let data;
 
-  const { nombreLibro, idLibro, capitulo } = data;
+  const { nombreLibro, idLibro, capitulo, totalCapitulos, numeroCapituloActual } = data;
+  const capituloAnterior = numeroCapituloActual - 1;
+  const capituloSiguiente = numeroCapituloActual + 1;
+  const mostrarAnterior = numeroCapituloActual > 1;
+  const mostrarSiguiente = numeroCapituloActual < totalCapitulos;
 
-  // Creamos un Set para almacenar los números de los versículos seleccionados.
   let versiculosSeleccionados = new Set();
 
-  // Función que se ejecuta cada vez que se hace clic en un versículo.
   function seleccionarVersiculo(numeroVersiculo) {
     if (versiculosSeleccionados.has(numeroVersiculo)) {
-      versiculosSeleccionados.delete(numeroVersiculo); // Deseleccionar
+      versiculosSeleccionados.delete(numeroVersiculo);
     } else {
-      versiculosSeleccionados.add(numeroVersiculo); // Seleccionar
+      versiculosSeleccionados.add(numeroVersiculo);
     }
-    // Este truco le dice a Svelte que la variable ha cambiado para que actualice la vista.
     versiculosSeleccionados = versiculosSeleccionados;
   }
 </script>
@@ -25,18 +26,43 @@
   </header>
   
   <article class="texto-escritura">
-    <!-- Iteramos sobre cada versículo y lo mostramos -->
     {#each capitulo.verses as textoVersiculo, index}
       {@const numeroVersiculo = index + 1}
-      <p
+      <div
+        role="button"
+        tabindex="0"
         on:click={() => seleccionarVersiculo(numeroVersiculo)}
+        on:keydown={(event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            seleccionarVersiculo(numeroVersiculo);
+          }
+        }}
         class:seleccionado={versiculosSeleccionados.has(numeroVersiculo)}
+        class="versiculo-container"
       >
         <sup class="numero-versiculo">{numeroVersiculo}</sup>
         {textoVersiculo}
-      </p>
+      </div>
     {/each}
   </article>
+
+  <nav class="navegacion-capitulos">
+    {#if mostrarAnterior}
+      <a href="/{idLibro}/{capituloAnterior}" class="boton-nav">
+        &larr; Capítulo Anterior
+      </a>
+    {:else}
+      <!-- CORREGIDO: Etiqueta span con apertura y cierre -->
+      <span></span>
+    {/if}
+
+    {#if mostrarSiguiente}
+      <a href="/{idLibro}/{capituloSiguiente}" class="boton-nav">
+        Capítulo Siguiente &rarr;
+      </a>
+    {/if}
+  </nav>
+
 </main>
 
 <style>
@@ -74,8 +100,8 @@
     font-size: 0.9em;
   }
 
-  /* REGLA ÚNICA Y CORREGIDA PARA LOS PÁRRAFOS DE VERSÍCULOS */
-  .texto-escritura p {
+  /* CORREGIDO: La regla ahora apunta a '.versiculo-container' en lugar de 'p' */
+  .versiculo-container {
     margin-bottom: 1em;
     font-size: 1.2rem;
     line-height: 1.8;
@@ -83,15 +109,20 @@
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.2s;
+    outline: none; /* Quita el borde azul por defecto al hacer clic */
+  }
+
+  /* NUEVO: Añadimos un estilo de foco para la navegación con teclado */
+  .versiculo-container:focus-visible {
+    box-shadow: 0 0 0 2px var(--color-primario); /* Un aro de color primario al enfocar con Tab */
   }
   
-  /* REGLA PARA EL ESTADO SELECCIONADO */
-  .texto-escritura p.seleccionado {
+  /* CORREGIDO: La regla ahora apunta a '.versiculo-container.seleccionado' */
+  .versiculo-container.seleccionado {
     background-color: var(--color-primario);
     color: var(--color-primario-texto);
   }
   
-  /* REGLA ÚNICA Y CORREGIDA PARA EL NÚMERO DEL VERSÍCULO */
   .numero-versiculo {
     font-weight: bold;
     color: var(--color-primario);
@@ -100,9 +131,34 @@
     vertical-align: super; 
   }
 
-  /* REGLA PARA EL NÚMERO CUANDO EL VERSÍCULO ESTÁ SELECCIONADO */
-  .texto-escritura p.seleccionado .numero-versiculo {
+  /* CORREGIDO: La regla ahora apunta a '.versiculo-container.seleccionado' */
+  .versiculo-container.seleccionado .numero-versiculo {
     color: var(--color-primario-texto);
     opacity: 0.8;
+  }
+
+  .navegacion-capitulos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 2em;
+    margin-top: 2em;
+    border-top: 1px solid var(--color-borde-suave);
+  }
+
+  .boton-nav {
+    text-decoration: none;
+    color: var(--color-primario);
+    background-color: transparent;
+    border: 1px solid var(--color-borde-suave);
+    padding: 0.8em 1.5em;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  .boton-nav:hover {
+    background-color: var(--color-primario);
+    color: var(--color-primario-texto);
   }
 </style>
