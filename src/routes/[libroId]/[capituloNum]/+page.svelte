@@ -1,14 +1,17 @@
 <script>
   export let data;
 
-  const { nombreLibro, idLibro, capitulo, totalCapitulos, numeroCapituloActual } = data;
-  const capituloAnterior = numeroCapituloActual - 1;
-  const capituloSiguiente = numeroCapituloActual + 1;
-  const mostrarAnterior = numeroCapituloActual > 1;
-  const mostrarSiguiente = numeroCapituloActual < totalCapitulos;
+  // Declaraciones Reactivas.
+  // El '$:' le dice a Svelte que vuelva a ejecutar estas líneas
+  // cada vez que una de las variables de las que dependen (como 'data') cambie.
+  $: ({ nombreLibro, idLibro, capitulo, totalCapituos, numeroCapituloActual } = data);
+  $: capituloAnterior = numeroCapituloActual - 1;
+  $: capituloSiguiente = numeroCapituloActual + 1;
+  $: mostrarAnterior = numeroCapituloActual > 1;
+  $: mostrarSiguiente = numeroCapituloActual < totalCapituos;
 
+  // Esta lógica no necesita ser reactiva, ya que solo maneja el estado de la selección
   let versiculosSeleccionados = new Set();
-
   function seleccionarVersiculo(numeroVersiculo) {
     if (versiculosSeleccionados.has(numeroVersiculo)) {
       versiculosSeleccionados.delete(numeroVersiculo);
@@ -16,6 +19,11 @@
       versiculosSeleccionados.add(numeroVersiculo);
     }
     versiculosSeleccionados = versiculosSeleccionados;
+  }
+  
+  // Una lógica extra: cuando cambiamos de capítulo, limpiamos los versículos seleccionados.
+  $: if (capitulo) {
+    versiculosSeleccionados = new Set();
   }
 </script>
 
