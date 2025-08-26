@@ -4,11 +4,11 @@
   // Declaraciones Reactivas.
   // El '$:' le dice a Svelte que vuelva a ejecutar estas líneas
   // cada vez que una de las variables de las que dependen (como 'data') cambie.
-  $: ({ nombreLibro, idLibro, capitulo, totalCapituos, numeroCapituloActual } = data);
+  $: ({ nombreLibro, idLibro, capitulo, totalCapitulos, numeroCapituloActual } = data);
   $: capituloAnterior = numeroCapituloActual - 1;
   $: capituloSiguiente = numeroCapituloActual + 1;
   $: mostrarAnterior = numeroCapituloActual > 1;
-  $: mostrarSiguiente = numeroCapituloActual < totalCapituos;
+  $: mostrarSiguiente = numeroCapituloActual < totalCapitulos;
 
   // Esta lógica no necesita ser reactiva, ya que solo maneja el estado de la selección
   let versiculosSeleccionados = new Set();
