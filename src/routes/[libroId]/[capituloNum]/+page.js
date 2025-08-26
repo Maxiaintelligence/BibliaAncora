@@ -1,4 +1,4 @@
-// src/routes/[libroId]/[capituloNum]/+page.js (VERSIÓN FINAL LIMPIA)
+// src/routes/[libroId]/[capituloNum]/+page.js (VERSIÓN CORRECTA Y COMPLETA)
 
 import { error } from '@sveltejs/kit';
 
@@ -14,15 +14,15 @@ export async function load({ fetch, params }) {
   }
 
   const datosDelLibro = await response.json();
+  const totalCapitulos = datosDelLibro.chapters.length; // <--- AQUÍ SE CREA
   
-  if (!datosDelLibro.chapters || capituloNum <= 0 || capituloNum > datosDelLibro.chapters.length) {
+  if (!datosDelLibro.chapters || capituloNum <= 0 || capituloNum > totalCapitulos) {
     throw error(404, 'Capítulo no encontrado');
   }
   
   const datosDelCapitulo = datosDelLibro.chapters[capituloNum - 1];
 
   if (!datosDelCapitulo) {
-    // Esta comprobación es una seguridad extra, aunque la anterior debería cubrirlo.
     throw error(404, 'Capítulo no encontrado');
   }
 
@@ -30,7 +30,7 @@ export async function load({ fetch, params }) {
     nombreLibro: datosDelLibro.book_full_name,
     idLibro: libroId,
     capitulo: datosDelCapitulo,
-    totalCapitulos: totalCapitulos, // <-- NUEVO: Pasamos el total de capítulos
-    numeroCapituloActual: capituloNum, // <-- NUEVO: Pasamos el número actual
+    totalCapitulos: totalCapitulos,           // <--- AQUÍ SE ENVÍA
+    numeroCapituloActual: capituloNum,        // <--- AQUÍ SE ENVÍA
   };
 }
